@@ -5272,6 +5272,7 @@ dependencies = [
  "lazy_static",
  "libc",
  "pin-project-lite",
+ "serde",
  "slab",
  "thiserror",
  "tokio",
