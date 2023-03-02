@@ -33,7 +33,10 @@ cfg-if = "1.0"
 fern = { version = "0.6", features = ["colored"], optional = true }
 log = { version = "0.4", optional = true }
 target-lexicon = { version = "0.12", features = ["std"] }
-tempfile = "3"
+# Note: We use tilde here to limit us to 3.3.* versions. 3.4.0 pulls in errno
+# 0.2.8, which doesn't compile to WebAssembly on stable
+# See https://github.com/lambda-fairy/rust-errno/pull/66
+tempfile = "~3.3.0"
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]
 wasmer-compiler-singlepass = { version = "=3.2.0-alpha.1", path = "../compiler-singlepass", optional = true }
