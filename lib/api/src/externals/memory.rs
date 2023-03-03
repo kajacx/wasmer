@@ -159,6 +159,13 @@ impl<'a> Exportable<'a> for Memory {
     }
 }
 
+#[cfg(feature = "js")]
+impl From<Memory> for wasm_bindgen::JsValue {
+    fn from(value: Memory) -> Self {
+        wasm_bindgen::JsValue::from(value.0)
+    }
+}
+
 /// Underlying buffer for a memory.
 #[derive(Debug, Copy, Clone)]
 pub(crate) struct MemoryBuffer<'a>(pub(crate) memory_impl::MemoryBuffer<'a>);

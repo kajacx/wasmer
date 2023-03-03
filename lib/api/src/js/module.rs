@@ -79,7 +79,7 @@ impl Module {
 
     /// Creates a new WebAssembly module skipping any kind of validation from a javascript module
     ///
-    pub(crate) unsafe fn from_js_module(
+    pub unsafe fn from_js_module(
         _engine: &impl AsEngineRef,
         module: WebAssembly::Module,
         binary: impl IntoBytes,

@@ -390,6 +390,20 @@ impl Module {
     }
 }
 
+#[cfg(feature = "js")]
+impl Module {
+    /// Creates a new WebAssembly module skipping any kind of validation from a javascript module
+    ///
+    pub unsafe fn from_js_module(
+        engine: &impl AsEngineRef,
+        module: js_sys::WebAssembly::Module,
+        binary: impl IntoBytes,
+    ) -> Result<Self, CompileError> {
+        Ok(Module(module_imp::Module::from_js_module(engine, module, binary)?))
+    }
+}
+
+
 impl fmt::Debug for Module {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         f.debug_struct("Module")

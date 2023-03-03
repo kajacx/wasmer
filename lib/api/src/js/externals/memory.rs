@@ -184,6 +184,12 @@ impl std::cmp::PartialEq for Memory {
     }
 }
 
+impl From<Memory> for wasm_bindgen::JsValue {
+    fn from(value: Memory) -> Self {
+        wasm_bindgen::JsValue::from(value.handle)
+    }
+}
+
 /// Underlying buffer for a memory.
 #[derive(Copy, Clone, Debug)]
 pub(crate) struct MemoryBuffer<'a> {
